@@ -9,16 +9,24 @@
           :to="`/news/finance/detail?nid=${news.nid}&text=${news.text}`"
           >{{ news.text }}</router-link
         > -->
-        <router-link
-          :to="{
-            path: '/news/finance/detail',
-            query: {
-              nid: news.nid,
-              text: news.text,
-            },
-          }"
-          >{{ news.text }}</router-link
-        >
+<!--        <router-link-->
+<!--          :to="{-->
+<!--            path: '/news/finance/detail',-->
+<!--            query: {-->
+<!--              nid: news.nid,-->
+<!--              text: news.text,-->
+<!--            },-->
+<!--          }"-->
+<!--          >{{ news.text }}-->
+<!--        </router-link>-->
+<!--        <router-link to="/news/finance/detail/${news.nid}/${news.text}">{{news.text}}</router-link>-->
+        <router-link :to="{
+          name: 'ndetail',
+          params:{
+            nid: news.nid,
+            text: news.text
+          },
+        }">{{news.text}}<button>push</button><button @click="replace(news)">replace</button></router-link>
       </li>
     </ul>
 
@@ -47,6 +55,26 @@ export default {
       ],
     };
   },
+  methods:{
+    push(news){
+      this.$router.push({
+        name:"ndetail",
+        params:{
+          nid:news.nid,
+          text:news.text,
+        },
+      })
+    },
+    replace(news){
+      this.$router.replace({
+        name:"ndetail",
+        params:{
+          nid:news.nid,
+          text:news.text,
+        },
+      })
+    }
+  }
 };
 </script>
 

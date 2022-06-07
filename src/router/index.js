@@ -19,12 +19,23 @@ const routes = [
     path: '/about',
     name: 'nabout',
     component: AboutView,
+    meta:{isAuth:true},
+    beforeEnter:(to,from,next) =>{
+      if(to.meta.isAuth){
+        if(localStorage.getItem('username') === 'tom'){
+          next()
+        } else {
+          alert('user isnot valid')
+        }
+      }
+    }
   },
   {
     path: '/news',
     component: NewsView,
     children: [
       {
+        name:'nsports',
         path: 'sports',  //  /
         component: SportsView
       },
@@ -33,8 +44,15 @@ const routes = [
         component: FinanceView,
         children: [
           {
-            path: 'detail',  //  /
-            component: DetailView
+            name: 'ndetail',
+            path: 'detail/:nid/:text',  //  /
+            component: DetailView,
+            props({params:{nid,text}}){
+              return {
+                nid: nid,
+                text: text
+              }
+            }
           },
           {
             path: 'detail2',  //  /
@@ -51,5 +69,20 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to,from,next)=>{
+  console.log(to,from,next);
+  //用next去转到下一页
+  next();
+  if(to.meta.isAuth){
+    if(localStorage.getItem('username') === 'tom'){
+      next()
+    } else {
+      alert('user isnot valid')
+    }
+  }
+})
+
+
 
 export default router
