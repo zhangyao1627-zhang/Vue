@@ -1,0 +1,16 @@
+{
+  "courses": [
+    {
+      "cname": "vue",
+      "isChecked": true
+    },
+    {
+      "cname": "java",
+      "isChecked": false
+    },
+    {
+      "cname": "python",
+      "isChecked": true
+    }
+  ]
+}

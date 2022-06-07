@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: "#d1",//mounting point
+                data: {
+                    username: "",  //two way binding
+                    password: "",
+                    gender: 'female',
+                    hobbies: ['swimming', 'music'],
+                    departId: 3,
+                    allDeparts: [{
+                        id: 1,
+                        name: "department one"
+                    }, {
+                        id: 2,
+                        name: "department two"
+                    }, {
+                        id: 3,
+                        name: "department three"
+                    }],
+                    introduction: "yyyyy"
+                },
+                computed: {   //they can be cached
+
+                }
+            })
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        username: <input type="text" v-model="username" /> <br />
+        password: <input type="text" v-model="password" /> <br />
+        gender: <input type="radio" v-model="gender" value="male" /> male
+        <input type="radio" v-model="gender" value="female" /> female<br />
+        hobbies: <input type="checkbox" v-model="hobbies" value="football" /> football
+        <input type="checkbox" v-model="hobbies" value="swimming" /> swimming
+        <input type="checkbox" v-model="hobbies" value="music" /> music<br />
+        depart:
+        <select v-model="departId">
+            <option value="">please select</option>
+            <option :value="depart.id" v-for="(depart,index) in allDeparts" :key="index">{{depart.name}}</option>
+        </select><br />
+        <textarea v-model="introduction"></textarea>
+    </div>
+</body>
+
+</html>

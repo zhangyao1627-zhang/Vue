@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#areacode").keyup(function () {
+                let wholenumber = $(this).val() + '-' + $("#tel").val();
+                $("#wholenumber").val(wholenumber);
+                $("#d2").text(wholenumber);
+            })
+            $("#tel").keyup(function () {
+                let wholenumber = $("#areacode").val() + '-' + $(this).val();
+                $("#wholenumber").val(wholenumber);
+                $("#d2").text(wholenumber);
+            })
+            $("#wholenumber").keyup(function () {
+                let tels = $(this).val().split('-');
+                $("#areacode").val(tels[0])
+                $("#tel").val(tels[1])
+            })
+        })
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        areacode:<input type="text" id="areacode" /><br />
+        tel:<input type="text" id="tel" /><br />
+        whole number:<input type="text" id="wholenumber" /><br />
+        <div id="d2"></div>
+    </div>
+</body>
+
+</html>

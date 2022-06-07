@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: "#d1",//mounting point
+                data: {
+                    counterComputed: 0,
+                    counterMethod: 0
+                },
+                methods: {
+                    printUsingMethod: function () {
+                        console.log("printUsingMethod:",this.counterMethod);
+                    }
+                },
+                computed: {   //they can be cached
+                    printUsingComputed: function () {
+                        console.log("printUsingComputed:",this.counterComputed);
+                    }
+                }
+            })
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        <button @click="counterComputed++">Computed Button</button>
+        <p>{{counterComputed}}</p>
+        <button @click="counterMethod++">Method Button</button>
+        <p>{{counterMethod}}</p>
+        {{printUsingComputed}}
+        {{printUsingMethod()}}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        <button>send by get</button>
+        <button>send by delete</button>
+        <button>send by post</button>
+        <button>send by put</button>
+    </div>
+<!--javascript有顺序问题,要先创建了再调用-->
+    <script src="../js/axios.min.js"></script>
+    <script>
+        //1.可以直接这么写
+        axios.default.baseURL = "http://localhost:5000"
+        axios.default.timeout = 3000
+
+        const btns = document.querySelectorAll('button');
+        btns[0].onclick = function () {
+            axios({
+                method: 'get',
+                url: '/courses'
+            }).then(response => {
+                console.log(response);
+            })
+        }
+
+        btns[1].onclick = function () {
+            axios({
+                method: 'delete',
+                url: '/courses/1'
+            }).then(response => {
+                console.log(response);
+            })
+        }
+
+        btns[2].onclick = function () {
+            axios({
+                method: 'post',
+                url: '/course',
+                data: {
+                    "id": "3",
+                    "name": "宝马",
+                    "ctime": new Date()
+                }
+            }).then(response => {
+                console.log(response);
+            })
+        }
+
+        //2.也可以直接进行新建
+        const axiosin = axios.create({
+            baseURL: 'https://localhost:5000',
+            timeout: 3000
+        })
+        btns[3].onclick = function () {
+            axiosin.get('/course').then(response => {
+                console.log(response);
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

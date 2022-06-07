@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        // Add a request interceptor
+        axios.interceptors.request.use(function (config) {
+            // Do something before request is sent
+            console.log("request interceptor 111");
+            return config;
+        }, function (error) {
+            // Do something with request error
+            return Promise.reject(error);
+        });
+
+        // Add a request interceptor
+        axios.interceptors.request.use(function (config) {
+            // Do something before request is sent
+            console.log("request interceptor 222");
+            return config;
+        }, function (error) {
+            // Do something with request error
+            return Promise.reject(error);
+        });
+
+        // Add a response interceptor
+        axios.interceptors.response.use(function (response) {
+            // Any status code that lie within the range of 2xx cause this function to trigger
+            // Do something with response data
+            console.log("response interceptor 111")
+            return response;
+        }, function (error) {
+            // Any status codes that falls outside the range of 2xx cause this function to trigger
+            // Do something with response error
+            return Promise.reject(error);
+        });
+
+        // Add a response interceptor
+        axios.interceptors.response.use(function (response) {
+            // Any status code that lie within the range of 2xx cause this function to trigger
+            // Do something with response data
+            console.log("response interceptor 222")
+            return response;
+        }, function (error) {
+            // Any status codes that falls outside the range of 2xx cause this function to trigger
+            // Do something with response error
+            return Promise.reject(error);
+        });
+    </script>
+</body>
+</html>

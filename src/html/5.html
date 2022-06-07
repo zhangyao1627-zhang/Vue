@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: "#d1",//mounting point
+                data: {
+                    firstname: "tom",  //two way binding
+                    lastname: "123"
+                },
+                methods: {
+                    add: function () {
+                        this.cart1.count++
+                    }
+                },
+                computed: {   //they can be cached
+                    fullname1: function () {
+                        console.log("fullname1", this);
+                        return this.firstname + '-' + this.lastname
+                    },
+                    fullname2: {
+                        get() {
+                            return this.firstname + '-' + this.lastname
+                        },
+                        set(value) {
+                            const names = value.split('-')
+                            this.firstname = names[0]
+                            this.lastname = names[1]
+                        }
+                    },
+                }
+            })
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        firstname:<input type="text" v-model="firstname" /><br />
+        lastname:<input type="text" v-model="lastname" /><br />
+        fullname1:<input type="text" v-model="fullname1" /><br />
+        fullname2:<input type="text" v-model="fullname2" /><br />
+        {{fullname1}}<br/>{{fullname2}}
+    </div>
+</body>
+
+</html>

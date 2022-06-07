@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            new Vue({
+                el: "#d1",//mounting point
+                data: {
+                    cart1: {
+                        count: 2,
+                        price: 40
+                    },
+                    cart2: {
+                        count: 5,
+                        price: 30
+                    },
+                },
+                methods: {
+                    add: function () {
+                        this.cart1.count++
+                    }
+                },
+                computed: {   //they can be cached
+                    totalprice: function () {
+                        return this.cart1.price * this.cart1.count +
+                            this.cart2.price * this.cart2.count
+                    }
+                }
+            })
+        }
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="d1">
+        <button @click="add">add count</button>
+        <p>totalpirce:{{totalprice}}</p>
+
+    </div>
+</body>
+
+</html>
