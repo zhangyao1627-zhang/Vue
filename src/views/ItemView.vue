@@ -50,7 +50,9 @@ export default {
     deleteCourse2() {
       if (window.confirm(`delete ${this.course.cname}?`))
         // this.deleteCourse(this.index);
-        this.$store.dispatch("deleteCourse", this.index);
+        console.log("enter here");
+        console.log(this.course);
+        this.$store.dispatch("deleteCourse", this.course.id);
     },
   },
 };

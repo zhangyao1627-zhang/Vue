@@ -1,16 +1,24 @@
 {
   "courses": [
     {
+      "id": 0,
       "cname": "vue",
-      "isChecked": true
+      "isChecked": false
     },
     {
+      "id": 1,
       "cname": "java",
       "isChecked": false
     },
     {
+      "id": 2,
       "cname": "python",
       "isChecked": true
+    },
+    {
+      "cname": "react",
+      "isChecked": false,
+      "id": 3
     }
   ]
 }
